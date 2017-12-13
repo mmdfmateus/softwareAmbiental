@@ -16,14 +16,19 @@ Including another URLconf
 
 from django.conf.urls import url,include
 from django.contrib import admin
-from .urls import
+#from .urls import
 from gerenciamentoDeResiduos.core import views
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
 #core----------------
     url(r'^$', views.home, name='home'),
     url(r'^contato/$', views.contact, name='contact'),
     url(r'^quem_somos/$', views.quem_somos, name='quem_somos'),
+
+#accounts
+    url(r'^login/$', login, {'template_name': 'accounts/login.html'}, name='login'),
+    url(r'^logout/$', logout, {'next_page': 'home'}, name='logout'),
 
 #--------------------
     url(r'^admin/', admin.site.urls),
